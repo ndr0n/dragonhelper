@@ -7,19 +7,19 @@
     <MudButton OnClick="@(() => showBasic = !showBasic)">Basic</MudButton>
     if (showBasic)
     {
-        <MudTextField ShrinkLabel AutoGrow Label="Class & Level" @bind-Value="@Character.ClassAndLevel"/>
+        <MudTextField ShrinkLabel AutoGrow Label="Class & Level" @bind-Value="@Character.ClassAndLevel" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
         <MudGrid>
             <MudItem md="3" xs="6">
-                <MudTextField ShrinkLabel Label="Race" @bind-Value="@Character.Race"/>
+                <MudTextField ShrinkLabel Label="Race" @bind-Value="@Character.Race" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="3" xs="6">
-                <MudTextField ShrinkLabel Label="Background" @bind-Value="@Character.Background"/>
+                <MudTextField ShrinkLabel Label="Background" @bind-Value="@Character.Background" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="3" xs="6">
-                <MudTextField ShrinkLabel Label="Alignment" @bind-Value="@Character.Alignment"/>
+                <MudTextField ShrinkLabel Label="Alignment" @bind-Value="@Character.Alignment" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="3" xs="6">
-                <MudNumericField Label="Experience" @bind-Value="@Character.Experience"/>
+                <MudNumericField Label="Experience" @bind-Value="@Character.Experience" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -31,43 +31,43 @@
     {
         <MudGrid>
             <MudItem md="3" xs="6">
-                <MudNumericField Label="Hit Point Maximum" @bind-Value="@Character.HitPointMaximum"/>
+                <MudNumericField Label="Hit Point Maximum" @bind-Value="@Character.HitPointMaximum" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="3" xs="6">
-                <MudNumericField Label="Hit Points" @bind-Value="@Character.HitPoints"/>
+                <MudNumericField Label="Hit Points" @bind-Value="@Character.HitPoints" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="3" xs="6">
-                <MudTextField ShrinkLabel Label="Hit Dice" @bind-Value="@Character.HitDice"/>
+                <MudTextField ShrinkLabel Label="Hit Dice" @bind-Value="@Character.HitDice" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="3" xs="6">
                 <MudGrid>
                     <MudItem xs="6">
-                        <MudNumericField Label="Save Success" @bind-Value="@Character.DeathSaveSuccess" Max="3"/>
+                        <MudNumericField Label="Save Success" @bind-Value="@Character.DeathSaveSuccess" Max="3" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     </MudItem>
                     <MudItem xs="6">
-                        <MudNumericField Label="Save Failure" @bind-Value="@Character.DeathSaveFailure" Max="3"/>
+                        <MudNumericField Label="Save Failure" @bind-Value="@Character.DeathSaveFailure" Max="3" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     </MudItem>
                 </MudGrid>
             </MudItem>
         </MudGrid>
         <MudGrid>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Inspiration" @bind-Value="@Character.Inspiration"/>
+                <MudNumericField Label="Inspiration" @bind-Value="@Character.Inspiration" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Proficiency Bonus" @bind-Value="@Character.ProficiencyBonus"/>
+                <MudNumericField Label="Proficiency Bonus" @bind-Value="@Character.ProficiencyBonus" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Passive Perception" @bind-Value="@Character.PassivePerception"/>
+                <MudNumericField Label="Passive Perception" @bind-Value="@Character.PassivePerception" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Armor Class" @bind-Value="@Character.ArmorClass"/>
+                <MudNumericField Label="Armor Class" @bind-Value="@Character.ArmorClass" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Initiative" @bind-Value="@Character.Initiative"/>
+                <MudNumericField Label="Initiative" @bind-Value="@Character.Initiative" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Speed" @bind-Value="@Character.Speed"/>
+                <MudNumericField Label="Speed" @bind-Value="@Character.Speed" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -80,7 +80,7 @@
         <MudGrid>
             <MudItem md="2" xs="4">
                 <MudStack Row="@true">
-                    <MudNumericField Label="Strength" @bind-Value="@Character.Strength" Max="30"/>
+                    <MudNumericField Label="Strength" @bind-Value="@Character.Strength" Max="30" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     <MudStack>
                         <br/>
                         <MudText>@Global.GetAttributeBonus(Character.Strength)</MudText>
@@ -89,7 +89,7 @@
             </MudItem>
             <MudItem md="2" xs="4">
                 <MudStack Row="@true">
-                    <MudNumericField Label="Dexterity" @bind-Value="@Character.Dexterity" Max="30"/>
+                    <MudNumericField Label="Dexterity" @bind-Value="@Character.Dexterity" Max="30" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     <MudStack>
                         <br/>
                         <MudText>@Global.GetAttributeBonus(Character.Dexterity)</MudText>
@@ -98,7 +98,7 @@
             </MudItem>
             <MudItem md="2" xs="4">
                 <MudStack Row="@true">
-                    <MudNumericField Label="Constitution" @bind-Value="@Character.Constitution" Max="30"/>
+                    <MudNumericField Label="Constitution" @bind-Value="@Character.Constitution" Max="30" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     <MudStack>
                         <br/>
                         <MudText>@Global.GetAttributeBonus(Character.Constitution)</MudText>
@@ -107,7 +107,7 @@
             </MudItem>
             <MudItem md="2" xs="4">
                 <MudStack Row="@true">
-                    <MudNumericField Label="Intelligence" @bind-Value="@Character.Intelligence" Max="30"/>
+                    <MudNumericField Label="Intelligence" @bind-Value="@Character.Intelligence" Max="30" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     <MudStack>
                         <br/>
                         <MudText>@Global.GetAttributeBonus(Character.Intelligence)</MudText>
@@ -116,7 +116,7 @@
             </MudItem>
             <MudItem md="2" xs="4">
                 <MudStack Row="@true">
-                    <MudNumericField Label="Wisdom" @bind-Value="@Character.Wisdom" Max="30"/>
+                    <MudNumericField Label="Wisdom" @bind-Value="@Character.Wisdom" Max="30" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     <MudStack>
                         <br/>
                         <MudText>@Global.GetAttributeBonus(Character.Wisdom)</MudText>
@@ -125,7 +125,7 @@
             </MudItem>
             <MudItem md="2" xs="4">
                 <MudStack Row="@true">
-                    <MudNumericField Label="Charisma" @bind-Value="@Character.Charisma" Max="30"/>
+                    <MudNumericField Label="Charisma" @bind-Value="@Character.Charisma" Max="30" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
                     <MudStack>
                         <br/>
                         <MudText>@Global.GetAttributeBonus(Character.Charisma)</MudText>
@@ -142,58 +142,58 @@
     {
         <MudGrid>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Acrobatics" @bind-Value="@Character.Acrobatics"/>
+                <MudNumericField Label="Acrobatics" @bind-Value="@Character.Acrobatics" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Animal Handling" @bind-Value="@Character.AnimalHandling"/>
+                <MudNumericField Label="Animal Handling" @bind-Value="@Character.AnimalHandling" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Arcana" @bind-Value="@Character.Arcana"/>
+                <MudNumericField Label="Arcana" @bind-Value="@Character.Arcana" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Athletics" @bind-Value="@Character.Athletics"/>
+                <MudNumericField Label="Athletics" @bind-Value="@Character.Athletics" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Deception" @bind-Value="@Character.Deception"/>
+                <MudNumericField Label="Deception" @bind-Value="@Character.Deception" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="History" @bind-Value="@Character.History"/>
+                <MudNumericField Label="History" @bind-Value="@Character.History" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Insight" @bind-Value="@Character.Insight"/>
+                <MudNumericField Label="Insight" @bind-Value="@Character.Insight" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Intimidation" @bind-Value="@Character.Intimidation"/>
+                <MudNumericField Label="Intimidation" @bind-Value="@Character.Intimidation" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Investigation" @bind-Value="@Character.Investigation"/>
+                <MudNumericField Label="Investigation" @bind-Value="@Character.Investigation" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Medicine" @bind-Value="@Character.Medicine"/>
+                <MudNumericField Label="Medicine" @bind-Value="@Character.Medicine" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Nature" @bind-Value="@Character.Nature"/>
+                <MudNumericField Label="Nature" @bind-Value="@Character.Nature" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Perception" @bind-Value="@Character.Perception"/>
+                <MudNumericField Label="Perception" @bind-Value="@Character.Perception" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Performance" @bind-Value="@Character.Performance"/>
+                <MudNumericField Label="Performance" @bind-Value="@Character.Performance" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Persuassion" @bind-Value="@Character.Persuasion"/>
+                <MudNumericField Label="Persuassion" @bind-Value="@Character.Persuasion" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Religion" @bind-Value="@Character.Religion"/>
+                <MudNumericField Label="Religion" @bind-Value="@Character.Religion" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Sleight Of Hand" @bind-Value="@Character.SleightOfHand"/>
+                <MudNumericField Label="Sleight Of Hand" @bind-Value="@Character.SleightOfHand" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Stealth" @bind-Value="@Character.Stealth"/>
+                <MudNumericField Label="Stealth" @bind-Value="@Character.Stealth" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Survival" @bind-Value="@Character.Survival"/>
+                <MudNumericField Label="Survival" @bind-Value="@Character.Survival" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -205,22 +205,22 @@
     {
         <MudGrid>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Strength" @bind-Value="@Character.StrengthSavingThrow"/>
+                <MudNumericField Label="Strength" @bind-Value="@Character.StrengthSavingThrow" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Dexterity" @bind-Value="@Character.DexteritySavingThrow"/>
+                <MudNumericField Label="Dexterity" @bind-Value="@Character.DexteritySavingThrow" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Constitution" @bind-Value="@Character.ConstitutionSavingThrow"/>
+                <MudNumericField Label="Constitution" @bind-Value="@Character.ConstitutionSavingThrow" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Intelligence" @bind-Value="@Character.IntelligenceSavingThrow"/>
+                <MudNumericField Label="Intelligence" @bind-Value="@Character.IntelligenceSavingThrow" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Wisdom" @bind-Value="@Character.WisdomSavingThrow"/>
+                <MudNumericField Label="Wisdom" @bind-Value="@Character.WisdomSavingThrow" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem md="2" xs="4">
-                <MudNumericField Label="Charisma" @bind-Value="@Character.CharismaSavingThrow"/>
+                <MudNumericField Label="Charisma" @bind-Value="@Character.CharismaSavingThrow" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -232,24 +232,128 @@
     {
         <MudGrid>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Equipment" @bind-Value="@Character.Equipment"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Equipment" @bind-Value="@Character.Equipment" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Inventory" @bind-Value="@Character.Inventory"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Inventory" @bind-Value="@Character.Inventory" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
         <MudGrid>
             <MudItem xs="3">
-                <MudNumericField Label="Cooper" @bind-Value="@Character.Cooper"/>
+                <MudNumericField Label="Cooper" @bind-Value="@Character.Cooper" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="3">
-                <MudNumericField Label="Silver" @bind-Value="@Character.Silver"/>
+                <MudNumericField Label="Silver" @bind-Value="@Character.Silver" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="3">
-                <MudNumericField Label="Gold" @bind-Value="@Character.Gold"/>
+                <MudNumericField Label="Gold" @bind-Value="@Character.Gold" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="3">
-                <MudNumericField Label="Platinum" @bind-Value="@Character.Platinum"/>
+                <MudNumericField Label="Platinum" @bind-Value="@Character.Platinum" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showSpellBook = !showSpellBook)">SpellBook</MudButton>
+    @if (showSpellBook)
+    {
+        <MudGrid>
+            <MudItem xs="4">
+                <MudTextField ShrinkLabel Label="Spellcasting Ability" @bind-Value="@Character.SpellcastingAbility" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudNumericField Label="Spell Save DC" @bind-Value="@Character.SpellSaveDc" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudNumericField Label="Spell Attack Bonus" @bind-Value="@Character.SpellAttackBonus" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+        </MudGrid>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Cantrips" @bind-Value="@Character.Cantrips" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 1 Spell Slots Total" @bind-Value="@Character.Level1SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 1 Spell Slots Expended" @bind-Value="@Character.Level1SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 1 Spells" @bind-Value="@Character.Level1Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 2 Spell Slots Total" @bind-Value="@Character.Level2SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 2 Spell Slots Expended" @bind-Value="@Character.Level2SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 2 Spells" @bind-Value="@Character.Level2Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 3 Spell Slots Total" @bind-Value="@Character.Level3SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 3 Spell Slots Expended" @bind-Value="@Character.Level3SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 3 Spells" @bind-Value="@Character.Level3Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 4 Spell Slots Total" @bind-Value="@Character.Level4SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 4 Spell Slots Expended" @bind-Value="@Character.Level4SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 4 Spells" @bind-Value="@Character.Level4Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 5 Spell Slots Total" @bind-Value="@Character.Level5SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 5 Spell Slots Expended" @bind-Value="@Character.Level5SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 5 Spells" @bind-Value="@Character.Level5Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 6 Spell Slots Total" @bind-Value="@Character.Level6SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 6 Spell Slots Expended" @bind-Value="@Character.Level6SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 6 Spells" @bind-Value="@Character.Level6Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 7 Spell Slots Total" @bind-Value="@Character.Level7SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 7 Spell Slots Expended" @bind-Value="@Character.Level7SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 7 Spells" @bind-Value="@Character.Level7Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 8 Spell Slots Total" @bind-Value="@Character.Level8SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 8 Spell Slots Expended" @bind-Value="@Character.Level8SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 8 Spells" @bind-Value="@Character.Level8Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 9 Spell Slots Total" @bind-Value="@Character.Level9SpellSlotTotal" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 9 Spell Slots Expended" @bind-Value="@Character.Level9SpellSlotExpended" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 9 Spells" @bind-Value="@Character.Level9Spells" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -261,118 +365,14 @@
     {
         <MudGrid>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
     
-    <br/>
-
-    <MudButton OnClick="@(() => showSpellBook = !showSpellBook)">SpellBook</MudButton>
-    @if (showSpellBook)
-    {
-        <MudGrid>
-            <MudItem xs="4">
-                <MudTextField ShrinkLabel Label="Spellcasting Ability" @bind-Value="@Character.SpellcastingAbility"/>
-            </MudItem>
-            <MudItem xs="4">
-                <MudNumericField Label="Spell Save DC" @bind-Value="@Character.SpellSaveDc"/>
-            </MudItem>
-            <MudItem xs="4">
-                <MudNumericField Label="Spell Attack Bonus" @bind-Value="@Character.SpellAttackBonus"/>
-            </MudItem>
-        </MudGrid>
-        <MudGrid>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Cantrips" @bind-Value="@Character.Cantrips"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 1 Spell Slots Total" @bind-Value="@Character.Level1SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 1 Spell Slots Expended" @bind-Value="@Character.Level1SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 1 Spells" @bind-Value="@Character.Level1Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 2 Spell Slots Total" @bind-Value="@Character.Level2SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 2 Spell Slots Expended" @bind-Value="@Character.Level2SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 2 Spells" @bind-Value="@Character.Level2Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 3 Spell Slots Total" @bind-Value="@Character.Level3SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 3 Spell Slots Expended" @bind-Value="@Character.Level3SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 3 Spells" @bind-Value="@Character.Level3Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 4 Spell Slots Total" @bind-Value="@Character.Level4SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 4 Spell Slots Expended" @bind-Value="@Character.Level4SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 4 Spells" @bind-Value="@Character.Level4Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 5 Spell Slots Total" @bind-Value="@Character.Level5SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 5 Spell Slots Expended" @bind-Value="@Character.Level5SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 5 Spells" @bind-Value="@Character.Level5Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 6 Spell Slots Total" @bind-Value="@Character.Level6SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 6 Spell Slots Expended" @bind-Value="@Character.Level6SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 6 Spells" @bind-Value="@Character.Level6Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 7 Spell Slots Total" @bind-Value="@Character.Level7SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 7 Spell Slots Expended" @bind-Value="@Character.Level7SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 7 Spells" @bind-Value="@Character.Level7Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 8 Spell Slots Total" @bind-Value="@Character.Level8SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 8 Spell Slots Expended" @bind-Value="@Character.Level8SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 8 Spells" @bind-Value="@Character.Level8Spells"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 9 Spell Slots Total" @bind-Value="@Character.Level9SpellSlotTotal"/>
-            </MudItem>
-            <MudItem xs="6">
-                <MudNumericField Label="Level 9 Spell Slots Expended" @bind-Value="@Character.Level9SpellSlotExpended"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Level 9 Spells" @bind-Value="@Character.Level9Spells"/>
-            </MudItem>
-        </MudGrid>
-    }
-
     <br/>
 
     <MudButton OnClick="@(() => showPhysical = !showPhysical)">Physical</MudButton>
@@ -380,25 +380,25 @@
     {
         <MudGrid>
             <MudItem xs="4">
-                <MudNumericField Label="Age" @bind-Value="@Character.Age"/>
+                <MudNumericField Label="Age" @bind-Value="@Character.Age" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="4">
-                <MudNumericField Label="Height" @bind-Value="@Character.Height"/>
+                <MudNumericField Label="Height" @bind-Value="@Character.Height" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="4">
-                <MudNumericField Label="Weight" @bind-Value="@Character.Weight"/>
+                <MudNumericField Label="Weight" @bind-Value="@Character.Weight" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="4">
-                <MudTextField ShrinkLabel AutoGrow Label="Eyes" @bind-Value="@Character.Eyes"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Eyes" @bind-Value="@Character.Eyes" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="4">
-                <MudTextField ShrinkLabel AutoGrow Label="Skin" @bind-Value="@Character.Skin"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Skin" @bind-Value="@Character.Skin" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="4">
-                <MudTextField ShrinkLabel AutoGrow Label="Hair" @bind-Value="@Character.Hair"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Hair" @bind-Value="@Character.Hair" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Appearance" @bind-Value="@Character.Appearance"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Appearance" @bind-Value="@Character.Appearance" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -410,16 +410,16 @@
     {
         <MudGrid>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Personality" @bind-Value="@Character.Personality"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Personality" @bind-Value="@Character.Personality" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Ideals" @bind-Value="@Character.Ideals"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Ideals" @bind-Value="@Character.Ideals" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Bonds" @bind-Value="@Character.Bonds"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Bonds" @bind-Value="@Character.Bonds" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Flaws" @bind-Value="@Character.Flaws"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Flaws" @bind-Value="@Character.Flaws" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }
@@ -431,10 +431,10 @@
     {
         <MudGrid>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Backstory" @bind-Value="@Character.Backstory"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Backstory" @bind-Value="@Character.Backstory" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
             <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Allies & Organizations" @bind-Value="@Character.AlliesAndOrganizations"/>
+                <MudTextField ShrinkLabel AutoGrow Label="Allies & Organizations" @bind-Value="@Character.AlliesAndOrganizations" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
             </MudItem>
         </MudGrid>
     }

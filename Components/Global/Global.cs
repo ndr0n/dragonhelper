@@ -25,4 +25,11 @@ public static class Global
         else if (value < 32) return "(+10)";
         else return "null";
     }
+    
+    public static void UpdateCharacter(Character character)
+    {
+        var jsonString = JsonSerializer.Serialize(character);
+        File.WriteAllText($"{Data.Path}/{character.Campaign}/Character-{character.Name}", jsonString);   
+        Data.RefreshData();
+    }
 }
