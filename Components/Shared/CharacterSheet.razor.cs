@@ -19,4 +19,5 @@ public partial class CharacterSheet
     bool showStory { get; set; } = false;
     bool showPersonality { get; set; } = false;
     bool showTraits { get; set; } = false;
+    private bool showAttacks { get; set; } = false;
 }

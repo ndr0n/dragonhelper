@@ -227,6 +227,21 @@
 
     <br/>
 
+    <MudButton OnClick="@(() => showTraits = !showTraits)">Traits</MudButton>
+    @if (showTraits)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+        </MudGrid>
+    }
+    
+    <br/>
+
     <MudButton OnClick="@(() => showItems = !showItems)">Items</MudButton>
     @if (showItems)
     {
@@ -254,6 +269,18 @@
         </MudGrid>
     }
 
+    <br/>
+    
+    <MudButton OnClick="@(() => showAttacks = !showAttacks)">Attacks</MudButton>
+    @if (showAttacks)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Attacks & Spellcasting" @bind-Value="@Character.AttacksAndSpellcasting" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
+            </MudItem>
+        </MudGrid>
+    }
+    
     <br/>
 
     <MudButton OnClick="@(() => showSpellBook = !showSpellBook)">SpellBook</MudButton>
@@ -359,22 +386,7 @@
     }
 
     <br/>
-
-    <MudButton OnClick="@(() => showTraits = !showTraits)">Traits</MudButton>
-    @if (showTraits)
-    {
-        <MudGrid>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages" TextChanged="@(()=>Global.UpdateCharacter(Character))"/>
-            </MudItem>
-        </MudGrid>
-    }
     
-    <br/>
-
     <MudButton OnClick="@(() => showPhysical = !showPhysical)">Physical</MudButton>
     @if (showPhysical)
     {
