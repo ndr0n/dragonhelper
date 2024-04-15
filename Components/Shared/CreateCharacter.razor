@@ -1,0 +1,67 @@
+﻿@using System.Text.Json
+@using DragonHelper.Components.Pages
+@using Microsoft.Extensions.FileProviders
+
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        <MudTextField Label="Name" @bind-Value="@Character.Name" TextChanged="TextChanged"/>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Disabled="ButtonDisabled" OnClick="@CreateFile">Create</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code
+{
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public CampaignPage CampaignPage { get; set; }
+    [Parameter] public Campaign Campaign { get; set; }
+    public Character Character = new();
+    public bool ButtonDisabled = false;
+    
+    protected override Task OnInitializedAsync()
+    {
+        Character = new();
+        Character.Campaign = Campaign.Name;
+        ButtonDisabled = true;
+        return Task.CompletedTask;
+    }
+
+    public void TextChanged()
+    {
+        if (String.IsNullOrWhiteSpace(Campaign.Name)) ButtonDisabled = true;
+        else ButtonDisabled = false;
+    }
+
+    public void CreateFile()
+    {
+        ButtonDisabled = true;
+        var characters = Directory.GetFiles($"{Data.Path}/{Campaign.Name}");
+        bool characterExists = false;
+        
+        foreach (var x in characters)
+        {
+            if (x.ToLower() == $"{Data.Path}/{Campaign.Name}/Character-{Character.Name}".ToLower())
+            {
+                characterExists = true;
+                break;
+            }
+        }
+
+        if (characterExists)
+        {
+            Snackbar.Add("Character with this name already exists on this campaign!");
+            ButtonDisabled = false;
+        }
+        else
+        {
+            var jsonString = JsonSerializer.Serialize(Character);
+            File.WriteAllText($"{Data.Path}/{Campaign.Name}/Character-{Character.Name}", jsonString);   
+            CampaignPage.Refresh();
+            ButtonDisabled = false;
+            MudDialog.Close();
+        }
+    }
+}

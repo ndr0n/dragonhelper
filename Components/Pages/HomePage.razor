@@ -1,0 +1,53 @@
+﻿@page "/"
+
+@inject IDialogService DialogService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Dragon Helper</PageTitle>
+
+<center>
+    <br/>
+    @if (Data.Campaign.Count > 0)
+    {
+        <MudText Typo="Typo.h6">Campaigns</MudText>
+        <br/>
+        @foreach (var campaign in Data.Campaign)
+        {
+            <MudButton Variant="Variant.Text" OnClick="@(()=>NavigationManager.NavigateTo($"/Campaign/{campaign.Name}"))">@campaign.Name</MudButton>
+            <br/>
+        }        
+    }
+    <br/>
+    <MudButton Variant="Variant.Filled" OnClick="ShowCreateCampaignDialog">Create Campaign</MudButton>
+</center>
+
+@code
+{
+    protected override Task OnInitializedAsync()
+    {
+        RefreshCampaigns();
+        return Task.CompletedTask;
+    }
+
+    public void RefreshCampaigns()
+    {
+        Data.RefreshData();
+        StateHasChanged();
+    }
+
+    public Task ShowCreateCampaignDialog()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("HomePage", this);
+        var options = new DialogOptions()
+        {
+            CloseOnEscapeKey = true,
+            CloseButton = true,
+            DisableBackdropClick = true,
+            MaxWidth = MaxWidth.ExtraLarge,
+            FullWidth = true
+        };
+        var dialog = DialogService.Show<CreateCampaign>($"Create Campaign", parameters, options);
+        return Task.CompletedTask;
+    }
+}

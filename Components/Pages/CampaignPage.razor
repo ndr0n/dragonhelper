@@ -1,0 +1,55 @@
+﻿@page "/Campaign/{CampaignName}"
+
+@inject IDialogService DialogService
+
+<PageTitle>@CampaignName</PageTitle>
+
+<center>
+    <br/>
+    <MudText Typo="Typo.h6">@Campaign.Name</MudText>
+    <br/>
+    @foreach (var character in Character)
+    {
+        <CharacterSheet Character="@character"></CharacterSheet>
+        <br/>
+    }
+    <MudButton Variant="Variant.Filled" OnClick="ShowCreateCharacterDialog">Create Character</MudButton>
+</center>
+
+@code
+{
+    [Parameter] public string CampaignName { get; set; } = String.Empty;
+    public Campaign Campaign { get; set; } = new();
+    public List<Character> Character { get; set; } = new();
+
+    protected override Task OnInitializedAsync()
+    {
+        Refresh();
+        return Task.CompletedTask;
+    }
+
+    public void Refresh()
+    {
+        Data.RefreshData();
+        Campaign = Data.Campaign.FirstOrDefault(x => x.Name.ToLower() == CampaignName.ToLower());
+        Character = Data.Character.Where(x => x.Campaign.ToLower() == Campaign.Name.ToLower()).ToList();
+        StateHasChanged();
+    }
+
+    public Task ShowCreateCharacterDialog()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("CampaignPage", this);
+        parameters.Add("Campaign", Campaign);
+        var options = new DialogOptions()
+        {
+            CloseOnEscapeKey = true,
+            CloseButton = true,
+            DisableBackdropClick = true,
+            MaxWidth = MaxWidth.ExtraLarge,
+            FullWidth = true
+        };
+        var dialog = DialogService.Show<CreateCharacter>($"Create Character", parameters, options);
+        return Task.CompletedTask;
+    }
+}

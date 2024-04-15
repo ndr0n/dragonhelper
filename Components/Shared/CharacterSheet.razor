@@ -1,0 +1,445 @@
+﻿<MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+<center>
+<MudButton OnClick="@(() => showCharacter = !showCharacter)">@Character.Name</MudButton>
+<br/>
+@if (showCharacter)
+{
+    <MudButton OnClick="@(() => showBasic = !showBasic)">Basic</MudButton>
+    if (showBasic)
+    {
+        <MudTextField ShrinkLabel AutoGrow Label="Class & Level" @bind-Value="@Character.ClassAndLevel"/>
+        <MudGrid>
+            <MudItem md="3" xs="6">
+                <MudTextField ShrinkLabel Label="Race" @bind-Value="@Character.Race"/>
+            </MudItem>
+            <MudItem md="3" xs="6">
+                <MudTextField ShrinkLabel Label="Background" @bind-Value="@Character.Background"/>
+            </MudItem>
+            <MudItem md="3" xs="6">
+                <MudTextField ShrinkLabel Label="Alignment" @bind-Value="@Character.Alignment"/>
+            </MudItem>
+            <MudItem md="3" xs="6">
+                <MudNumericField Label="Experience" @bind-Value="@Character.Experience"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showStats = !showStats)">Stats</MudButton>
+    if (showStats)
+    {
+        <MudGrid>
+            <MudItem md="3" xs="6">
+                <MudNumericField Label="Hit Point Maximum" @bind-Value="@Character.HitPointMaximum"/>
+            </MudItem>
+            <MudItem md="3" xs="6">
+                <MudNumericField Label="Hit Points" @bind-Value="@Character.HitPoints"/>
+            </MudItem>
+            <MudItem md="3" xs="6">
+                <MudTextField ShrinkLabel Label="Hit Dice" @bind-Value="@Character.HitDice"/>
+            </MudItem>
+            <MudItem md="3" xs="6">
+                <MudGrid>
+                    <MudItem xs="6">
+                        <MudNumericField Label="Save Success" @bind-Value="@Character.DeathSaveSuccess" Max="3"/>
+                    </MudItem>
+                    <MudItem xs="6">
+                        <MudNumericField Label="Save Failure" @bind-Value="@Character.DeathSaveFailure" Max="3"/>
+                    </MudItem>
+                </MudGrid>
+            </MudItem>
+        </MudGrid>
+        <MudGrid>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Inspiration" @bind-Value="@Character.Inspiration"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Proficiency Bonus" @bind-Value="@Character.ProficiencyBonus"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Passive Perception" @bind-Value="@Character.PassivePerception"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Armor Class" @bind-Value="@Character.ArmorClass"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Initiative" @bind-Value="@Character.Initiative"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Speed" @bind-Value="@Character.Speed"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showAttributes = !showAttributes)">Attributes</MudButton>
+    @if (showAttributes)
+    {
+        <MudGrid>
+            <MudItem md="2" xs="4">
+                <MudStack Row="@true">
+                    <MudNumericField Label="Strength" @bind-Value="@Character.Strength" Max="30"/>
+                    <MudStack>
+                        <br/>
+                        <MudText>@Global.GetAttributeBonus(Character.Strength)</MudText>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudStack Row="@true">
+                    <MudNumericField Label="Dexterity" @bind-Value="@Character.Dexterity" Max="30"/>
+                    <MudStack>
+                        <br/>
+                        <MudText>@Global.GetAttributeBonus(Character.Dexterity)</MudText>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudStack Row="@true">
+                    <MudNumericField Label="Constitution" @bind-Value="@Character.Constitution" Max="30"/>
+                    <MudStack>
+                        <br/>
+                        <MudText>@Global.GetAttributeBonus(Character.Constitution)</MudText>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudStack Row="@true">
+                    <MudNumericField Label="Intelligence" @bind-Value="@Character.Intelligence" Max="30"/>
+                    <MudStack>
+                        <br/>
+                        <MudText>@Global.GetAttributeBonus(Character.Intelligence)</MudText>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudStack Row="@true">
+                    <MudNumericField Label="Wisdom" @bind-Value="@Character.Wisdom" Max="30"/>
+                    <MudStack>
+                        <br/>
+                        <MudText>@Global.GetAttributeBonus(Character.Wisdom)</MudText>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudStack Row="@true">
+                    <MudNumericField Label="Charisma" @bind-Value="@Character.Charisma" Max="30"/>
+                    <MudStack>
+                        <br/>
+                        <MudText>@Global.GetAttributeBonus(Character.Charisma)</MudText>
+                    </MudStack>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showSkills = !showSkills)">Skills</MudButton>
+    @if (showSkills)
+    {
+        <MudGrid>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Acrobatics" @bind-Value="@Character.Acrobatics"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Animal Handling" @bind-Value="@Character.AnimalHandling"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Arcana" @bind-Value="@Character.Arcana"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Athletics" @bind-Value="@Character.Athletics"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Deception" @bind-Value="@Character.Deception"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="History" @bind-Value="@Character.History"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Insight" @bind-Value="@Character.Insight"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Intimidation" @bind-Value="@Character.Intimidation"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Investigation" @bind-Value="@Character.Investigation"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Medicine" @bind-Value="@Character.Medicine"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Nature" @bind-Value="@Character.Nature"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Perception" @bind-Value="@Character.Perception"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Performance" @bind-Value="@Character.Performance"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Persuassion" @bind-Value="@Character.Persuasion"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Religion" @bind-Value="@Character.Religion"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Sleight Of Hand" @bind-Value="@Character.SleightOfHand"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Stealth" @bind-Value="@Character.Stealth"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Survival" @bind-Value="@Character.Survival"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showSavingThrows = !showSavingThrows)">Saving Throws</MudButton>
+    @if (showSavingThrows)
+    {
+        <MudGrid>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Strength" @bind-Value="@Character.StrengthSavingThrow"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Dexterity" @bind-Value="@Character.DexteritySavingThrow"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Constitution" @bind-Value="@Character.ConstitutionSavingThrow"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Intelligence" @bind-Value="@Character.IntelligenceSavingThrow"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Wisdom" @bind-Value="@Character.WisdomSavingThrow"/>
+            </MudItem>
+            <MudItem md="2" xs="4">
+                <MudNumericField Label="Charisma" @bind-Value="@Character.CharismaSavingThrow"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showItems = !showItems)">Items</MudButton>
+    @if (showItems)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Equipment" @bind-Value="@Character.Equipment"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Inventory" @bind-Value="@Character.Inventory"/>
+            </MudItem>
+        </MudGrid>
+        <MudGrid>
+            <MudItem xs="3">
+                <MudNumericField Label="Cooper" @bind-Value="@Character.Cooper"/>
+            </MudItem>
+            <MudItem xs="3">
+                <MudNumericField Label="Silver" @bind-Value="@Character.Silver"/>
+            </MudItem>
+            <MudItem xs="3">
+                <MudNumericField Label="Gold" @bind-Value="@Character.Gold"/>
+            </MudItem>
+            <MudItem xs="3">
+                <MudNumericField Label="Platinum" @bind-Value="@Character.Platinum"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showSpellBook = !showSpellBook)">SpellBook</MudButton>
+    @if (showSpellBook)
+    {
+        <MudGrid>
+            <MudItem xs="4">
+                <MudTextField ShrinkLabel Label="Spellcasting Ability" @bind-Value="@Character.SpellcastingAbility"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudNumericField Label="Spell Save DC" @bind-Value="@Character.SpellSaveDc"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudNumericField Label="Spell Attack Bonus" @bind-Value="@Character.SpellAttackBonus"/>
+            </MudItem>
+        </MudGrid>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Cantrips" @bind-Value="@Character.Cantrips"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 1 Spell Slots Total" @bind-Value="@Character.Level1SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 1 Spell Slots Expended" @bind-Value="@Character.Level1SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 1 Spells" @bind-Value="@Character.Level1Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 2 Spell Slots Total" @bind-Value="@Character.Level2SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 2 Spell Slots Expended" @bind-Value="@Character.Level2SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 2 Spells" @bind-Value="@Character.Level2Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 3 Spell Slots Total" @bind-Value="@Character.Level3SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 3 Spell Slots Expended" @bind-Value="@Character.Level3SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 3 Spells" @bind-Value="@Character.Level3Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 4 Spell Slots Total" @bind-Value="@Character.Level4SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 4 Spell Slots Expended" @bind-Value="@Character.Level4SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 4 Spells" @bind-Value="@Character.Level4Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 5 Spell Slots Total" @bind-Value="@Character.Level5SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 5 Spell Slots Expended" @bind-Value="@Character.Level5SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 5 Spells" @bind-Value="@Character.Level5Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 6 Spell Slots Total" @bind-Value="@Character.Level6SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 6 Spell Slots Expended" @bind-Value="@Character.Level6SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 6 Spells" @bind-Value="@Character.Level6Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 7 Spell Slots Total" @bind-Value="@Character.Level7SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 7 Spell Slots Expended" @bind-Value="@Character.Level7SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 7 Spells" @bind-Value="@Character.Level7Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 8 Spell Slots Total" @bind-Value="@Character.Level8SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 8 Spell Slots Expended" @bind-Value="@Character.Level8SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 8 Spells" @bind-Value="@Character.Level8Spells"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 9 Spell Slots Total" @bind-Value="@Character.Level9SpellSlotTotal"/>
+            </MudItem>
+            <MudItem xs="6">
+                <MudNumericField Label="Level 9 Spell Slots Expended" @bind-Value="@Character.Level9SpellSlotExpended"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Level 9 Spells" @bind-Value="@Character.Level9Spells"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showPhysical = !showPhysical)">Physical</MudButton>
+    @if (showPhysical)
+    {
+        <MudGrid>
+            <MudItem xs="4">
+                <MudNumericField Label="Age" @bind-Value="@Character.Age"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudNumericField Label="Height" @bind-Value="@Character.Height"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudNumericField Label="Weight" @bind-Value="@Character.Weight"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField ShrinkLabel AutoGrow Label="Eyes" @bind-Value="@Character.Eyes"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField ShrinkLabel AutoGrow Label="Skin" @bind-Value="@Character.Skin"/>
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField ShrinkLabel AutoGrow Label="Hair" @bind-Value="@Character.Hair"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Appearance" @bind-Value="@Character.Appearance"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showTraits = !showTraits)">Traits</MudButton>
+    @if (showTraits)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages"/>
+            </MudItem>
+        </MudGrid>
+    }
+    
+    <br/>
+
+    <MudButton OnClick="@(() => showPersonality = !showPersonality)">Personality</MudButton>
+    @if (showPersonality)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Personality" @bind-Value="@Character.Personality"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Ideals" @bind-Value="@Character.Ideals"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Bonds" @bind-Value="@Character.Bonds"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Flaws" @bind-Value="@Character.Flaws"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+
+    <MudButton OnClick="@(() => showStory = !showStory)">Story</MudButton>
+    @if (showStory)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Backstory" @bind-Value="@Character.Backstory"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Allies & Organizations" @bind-Value="@Character.AlliesAndOrganizations"/>
+            </MudItem>
+        </MudGrid>
+    }
+
+    <br/>
+}
+</center>
+</MudContainer>

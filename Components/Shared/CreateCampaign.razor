@@ -1,0 +1,66 @@
+﻿@using System.Text.Json
+@using DragonHelper.Components.Pages
+@using Microsoft.Extensions.FileProviders
+
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        <MudTextField Label="Name" @bind-Value="@Campaign.Name" TextChanged="TextChanged"/>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Disabled="ButtonDisabled" OnClick="@CreateFile">Create</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code
+{
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public HomePage HomePage { get; set; }
+    public Campaign Campaign = new Campaign();
+    public bool ButtonDisabled = false;
+    
+    protected override Task OnInitializedAsync()
+    {
+        Campaign = new();
+        ButtonDisabled = true;
+        return Task.CompletedTask;
+    }
+
+    public void TextChanged()
+    {
+        if (String.IsNullOrWhiteSpace(Campaign.Name)) ButtonDisabled = true;
+        else ButtonDisabled = false;
+    }
+
+    public void CreateFile()
+    {
+        ButtonDisabled = true;
+        var campaigns = Directory.GetDirectories(Data.Path);
+        bool campaignExists = false;
+        
+        foreach (var x in campaigns)
+        {
+            if (x.ToLower() == $"{Data.Path}/{Campaign.Name}".ToLower())
+            {
+                campaignExists = true;
+                break;
+            }
+        }
+
+        if (campaignExists)
+        {
+            Snackbar.Add("Campaign with this name already exists!");
+            ButtonDisabled = false;
+        }
+        else
+        {
+            Directory.CreateDirectory($"{Data.Path}/{Campaign.Name}");
+            var jsonString = JsonSerializer.Serialize(Campaign);
+            File.WriteAllText($"{Data.Path}/{Campaign.Name}/Campaign-{Campaign.Name}", jsonString);   
+            HomePage.RefreshCampaigns();
+            ButtonDisabled = false;
+            MudDialog.Close();
+        }
+    }
+}
