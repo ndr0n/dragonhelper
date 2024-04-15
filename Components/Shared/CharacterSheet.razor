@@ -256,6 +256,21 @@
 
     <br/>
 
+    <MudButton OnClick="@(() => showTraits = !showTraits)">Traits</MudButton>
+    @if (showTraits)
+    {
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits"/>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages"/>
+            </MudItem>
+        </MudGrid>
+    }
+    
+    <br/>
+
     <MudButton OnClick="@(() => showSpellBook = !showSpellBook)">SpellBook</MudButton>
     @if (showSpellBook)
     {
@@ -388,21 +403,6 @@
         </MudGrid>
     }
 
-    <br/>
-
-    <MudButton OnClick="@(() => showTraits = !showTraits)">Traits</MudButton>
-    @if (showTraits)
-    {
-        <MudGrid>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Features & Traits" @bind-Value="@Character.FeaturesAndTraits"/>
-            </MudItem>
-            <MudItem xs="12">
-                <MudTextField ShrinkLabel AutoGrow Label="Proficiencies & Languages" @bind-Value="@Character.ProficienciesAndLanguages"/>
-            </MudItem>
-        </MudGrid>
-    }
-    
     <br/>
 
     <MudButton OnClick="@(() => showPersonality = !showPersonality)">Personality</MudButton>
